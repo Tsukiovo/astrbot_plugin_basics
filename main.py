@@ -31,7 +31,7 @@ class MyPlugin(Star):
     
     @filter.command("jrrp")
     async def today_luck(self, event: AstrMessageEvent):
-        """今日人品，结果为 0~100 的整数，每天固定"""
+        """今日人品，幸运值为 0~100 的整数，每天固定，会抽取塔罗牌并进行分析"""
         user_id = str(event.get_sender_id())
         today = datetime.now().strftime('%Y-%m-%d')
         # 使用局部随机数生成器，避免污染全局随机状态
@@ -59,7 +59,7 @@ class MyPlugin(Star):
         else:
             tarot_text = "\n\n今日塔罗：未找到 tarot.json，已跳过占卜。"
 
-        yield event.plain_result(f"{user_name} 的今日人品是：{luck} 🍀" + tarot_text)
+        yield event.plain_result(f"{user_name} 的幸运值是：{luck} 🍀" + tarot_text)
 
     @filter.command("roll")
     async def roll_dice(self, event: AstrMessageEvent):
